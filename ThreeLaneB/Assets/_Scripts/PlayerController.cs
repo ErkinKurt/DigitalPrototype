@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private InputField _inputFieldSoldier;
 
     //Erkin Deneme...
+    //Need to add quota to player controller to count every single bee in the game.
     public UIManager _uiManager;
 
 
@@ -43,9 +44,11 @@ public class PlayerController : MonoBehaviour
         else
             Debug.Log("Worker bee sent error:" + _sentBeeNumber);
 
-       
+
 
     }
+
+
 
     public void SendSoldierBee()
     {
@@ -56,8 +59,12 @@ public class PlayerController : MonoBehaviour
         _targetPosition = _uiManager.gameObjects[1];
         Bee _targetBee = _targetPosition.GetComponent<Bee>();
         Bee _initialBee = _initialPosition.GetComponent<Bee>();
-
-        if (_sentBeeNumber <= _initialBee.GetSoldierBeeNumber())
+        if (_targetPosition.tag == "Resource")
+        {
+            Debug.Log("Soldiers can't be sent to the resource.");
+            return;
+        }
+        else if (_sentBeeNumber <= _initialBee.GetSoldierBeeNumber())
         {
 
             _initialBee.SetSoldierBeeNumber(_initialBee.GetSoldierBeeNumber() - _sentBeeNumber);

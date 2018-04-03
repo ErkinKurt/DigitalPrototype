@@ -6,12 +6,22 @@ public class ResourceNode : MonoBehaviour {
     public UIManager _uiManager;
 
     // honey rate per worker bee
-    public int _rate;
+    [SerializeField]
+    private int _stockRatio;
+
     public Vector2 _location;
     public int _workerBeeNumberP1;
     public int _workerBeeNumberP2;
 
 
+    public void SetStockRatio(int stockRatio) {
+        _stockRatio = stockRatio;
+    }
+
+    public int GetStockRatio()
+    {
+        return _stockRatio;
+    }
 
     private void OnMouseDown()
     {
