@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    private GameObject _initialPosition;
-    private GameObject _targetPosition;
+    private Transform _initialPosition;
+    private Transform _targetPosition;
 
     public TextManager _workerBtn;
     public TextManager _soldierBtn;
@@ -21,20 +21,21 @@ public class PlayerController : MonoBehaviour
     //Need to add quota to player controller to count every single bee in the game.
     public UIManager _uiManager;
 
-
-    public int _sentBeeNumber;
-
+    public GameObject beePref;
 
     public void SendWorkerBee()
     {
-        _sentBeeNumber = Convert.ToInt32(_workerBtn._input);
         //Actual sending bees....
+    Debug.Log("AAAAAAAAAA");
+        _initialPosition = _uiManager.gameObjects[0].transform;
+        _targetPosition = _uiManager.gameObjects[1].transform;
 
-        _initialPosition = _uiManager.gameObjects[0];
-        _targetPosition = _uiManager.gameObjects[1];
+         GameObject _bee =   Instantiate(beePref);
+         _bee.GetComponent<PrefBee>().Move(_initialPosition,_targetPosition);
+       
+        /*
         Bee _targetBee = _targetPosition.GetComponent<Bee>();
         Bee _initialBee = _initialPosition.GetComponent<Bee>();
-
         if (_sentBeeNumber <= _initialBee.GetWorkerBeeNumber())
         {
             _initialBee.SetWorkerBeeNumber(_initialBee.GetWorkerBeeNumber() - _sentBeeNumber);
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         }
         else
             Debug.Log("Worker bee sent error:" + _sentBeeNumber);
-
+*/
 
 
     }
@@ -52,13 +53,14 @@ public class PlayerController : MonoBehaviour
 
     public void SendSoldierBee()
     {
-        _sentBeeNumber = Convert.ToInt32(_soldierBtn._input);
         //Actual sending bees....
 
-        _initialPosition = _uiManager.gameObjects[0];
-        _targetPosition = _uiManager.gameObjects[1];
+        _initialPosition = _uiManager.gameObjects[0].transform;
+        _targetPosition = _uiManager.gameObjects[1].transform;
         Bee _targetBee = _targetPosition.GetComponent<Bee>();
         Bee _initialBee = _initialPosition.GetComponent<Bee>();
+        
+        /*
         if (_targetPosition.tag == "Resource")
         {
             Debug.Log("Soldiers can't be sent to the resource.");
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
         }
         else
             Debug.Log("Soldier bee sent error:" + _sentBeeNumber);
-
+*/
     }
 
     private void Awake()
