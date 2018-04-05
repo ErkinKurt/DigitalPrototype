@@ -6,16 +6,35 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
     public GameObject SendBeeUI;
+    public GameObject WorkerBeeUI;
+    public GameObject SoldierBeeUI;
 
     public List<GameObject> gameObjects;
 
-    public void ShowSendBeeUI(Transform _transform) {
+    public void ShowSendBeeUI(Transform _transform, bool isResource ,bool isCP) {
         if (SendBeeUI.activeInHierarchy)
         {
             SendBeeUI.SetActive(false);
+            WorkerBeeUI.SetActive(false);
+            SoldierBeeUI.SetActive(false);
         }
         else
         {
+            if (isResource)
+            {
+                WorkerBeeUI.SetActive(true);
+                SoldierBeeUI.SetActive(false);
+            }
+            else if(isCP)
+            {
+                WorkerBeeUI.SetActive(false);
+                SoldierBeeUI.SetActive(true);
+            }
+            else
+            {
+                WorkerBeeUI.SetActive(true);
+                SoldierBeeUI.SetActive(true);
+            }
             SendBeeUI.SetActive(true);
         }
 
@@ -39,7 +58,7 @@ public class UIManager : MonoBehaviour {
         }
         else if (gameObjects.Count == 2)
         {
-            ShowSendBeeUI(gameObjects[1].transform);
+            ShowTargetUI(gameObjects[1]);
             gameObjects[0].GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 0.5f);
             gameObjects.Clear();
             gameObjects.Add(obje);
@@ -50,9 +69,19 @@ public class UIManager : MonoBehaviour {
     }
 
     public void ShowTargetUI(GameObject objec) {
-        //if (CompareTag ("resource")) showsendSoldierBeeUI else ShowSendWorkerUI
+        if (objec.CompareTag("Resource"))
+        {
+            ShowSendBeeUI(objec.transform,true,false);
+        }
+        else if (objec.CompareTag("ControlPoint"))
+        {
+            ShowSendBeeUI(objec.transform,false,true);
+        }
+        else
+        {
+            ShowSendBeeUI(objec.transform,false,false);
+        }
 
-        ShowSendBeeUI(objec.transform);
     }
 	
 }

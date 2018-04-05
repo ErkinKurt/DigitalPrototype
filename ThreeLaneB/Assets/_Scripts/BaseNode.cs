@@ -12,7 +12,8 @@ public class BaseNode : MonoBehaviour {
     //private int workerBeeCost;
     private List<GameObject> _resourceList;
 
-
+    public GameManagger GameManagger;
+    
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
     private PlayerManager playerManager; //player manager class ref
@@ -45,7 +46,7 @@ public class BaseNode : MonoBehaviour {
         _uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
         //set player manager ref
-        playerManager = GameManagger.Instance.GetComponent<PlayerManager>();
+        playerManager = GameManagger.GetComponent<PlayerManager>();
 
         //set base owner
         if (playerManager.base_P1 == this.gameObject)
@@ -58,13 +59,13 @@ public class BaseNode : MonoBehaviour {
         }
 
         //set Costs
-        _soldierBeeResourceCost = GameManagger.Instance.soldierBeeResourceCost;
-        _workerBeeResourceCost = GameManagger.Instance.workerBeeResourceCost;
-        _soldierBeeQuotaCost = GameManagger.Instance.soldierBeeQuotaCost;
-        _workerBeeQuotaCost = GameManagger.Instance.workerBeeQuotaCost;
+        _soldierBeeResourceCost = GameManagger.soldierBeeResourceCost;
+        _workerBeeResourceCost = GameManagger.workerBeeResourceCost;
+        _soldierBeeQuotaCost = GameManagger.soldierBeeQuotaCost;
+        _workerBeeQuotaCost = GameManagger.workerBeeQuotaCost;
 
         //set max bee quota
-        _maxBeeQuota = GameManagger.Instance.maxBeeQuota;
+        _maxBeeQuota = GameManagger.maxBeeQuota;
 
     }
 

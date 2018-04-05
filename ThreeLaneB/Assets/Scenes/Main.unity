@@ -755,7 +755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &337565651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1665,6 +1665,11 @@ Prefab:
       propertyPath: m_TagString
       value: BaseP2
       objectReference: {fileID: 0}
+    - target: {fileID: 114304210653937680, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+        type: 2}
+      propertyPath: GameManagger
+      value: 
+      objectReference: {fileID: 968324771}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
@@ -2275,6 +2280,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1962031437792556, guid: d4a959da868704cad9b7054c25ed6653,
         type: 2}
+    - target: {fileID: 114304210653937680, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+        type: 2}
+      propertyPath: GameManagger
+      value: 
+      objectReference: {fileID: 968324771}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
@@ -2495,6 +2505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SendBeeUI: {fileID: 2030443}
+  WorkerBeeUI: {fileID: 337565650}
+  SoldierBeeUI: {fileID: 2061976865}
   gameObjects: []
 --- !u!1 &1517049844
 GameObject:
@@ -3237,7 +3249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2061976866
 MonoBehaviour:
   m_ObjectHideFlags: 0
