@@ -335,6 +335,7 @@ MonoBehaviour:
   _inputFieldWorker: {fileID: 0}
   _uiManager: {fileID: 0}
   beePref: {fileID: 1962031437792556, guid: d4a959da868704cad9b7054c25ed6653, type: 2}
+  _sentBeeNumber: 5
 --- !u!4 &191676281
 Transform:
   m_ObjectHideFlags: 0
@@ -578,6 +579,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4228471275832128, guid: a4e50b8914cb2114fbc2622b8f2b6cc7,
     type: 2}
   m_PrefabInternal: {fileID: 224800511}
+--- !u!4 &258318549 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4319990790623466, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 1251505965}
 --- !u!1 &267191027
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +692,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 677761162}
-        m_MethodName: createSoldierBee
+        m_MethodName: CreateSoldierBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1489,7 +1495,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1835479881}
-        m_MethodName: createSoldierBee
+        m_MethodName: CreateSoldierBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1655,6 +1661,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1152665894458366, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
+      propertyPath: m_TagString
+      value: BaseP2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
@@ -1735,7 +1745,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1835479881}
-        m_MethodName: createWorkerBee
+        m_MethodName: CreateWorkerBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1788,6 +1798,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 968324772}
+  - component: {fileID: 968324773}
+  - component: {fileID: 968324771}
   m_Layer: 0
   m_Name: GameManagger
   m_TagString: Untagged
@@ -1795,6 +1807,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &968324771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968324770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8038d99b5df41c98cb0aa50cc3a997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soldierBeeResourceCost: 10
+  workerBeeResourceCost: 5
+  soldierBeeQuotaCost: 1
+  workerBeeQuotaCost: 1
+  maxBeeQuota: 100
 --- !u!4 &968324772
 Transform:
   m_ObjectHideFlags: 0
@@ -1808,6 +1836,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968324773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968324770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f0ea78e37d947dabca44cf18854e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  base_P1: {fileID: 0}
+  base_P2: {fileID: 0}
+  resource_P1: 0
+  resource_P2: 0
+  concurrentBee_P1: 0
+  concurrentBee_P2: 0
+  beePool_P1: {fileID: 0}
+  beePool_P2: {fileID: 0}
 --- !u!1001 &987077923
 Prefab:
   m_ObjectHideFlags: 0
@@ -2212,6 +2259,22 @@ Prefab:
       propertyPath: _workerBeeNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1152665894458366, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
+      propertyPath: m_TagString
+      value: BaseP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304210653937680, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+        type: 2}
+      propertyPath: soldierBeePrefab
+      value: 
+      objectReference: {fileID: 1962031437792556, guid: d4a959da868704cad9b7054c25ed6653,
+        type: 2}
+    - target: {fileID: 114304210653937680, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+        type: 2}
+      propertyPath: workerBeePrefab
+      value: 
+      objectReference: {fileID: 1962031437792556, guid: d4a959da868704cad9b7054c25ed6653,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
@@ -2460,6 +2523,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1647860934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1647860935}
+  m_Layer: 0
+  m_Name: BeeSpawnPoint
+  m_TagString: BeeSpawnPos
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1647860935
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647860934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 258318549}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1696811157
 GameObject:
@@ -2721,7 +2812,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 677761162}
-        m_MethodName: createWorkerBee
+        m_MethodName: CreateWorkerBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

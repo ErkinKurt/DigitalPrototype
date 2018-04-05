@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using  UnityEngine.UI;
 
 public class Bee : MonoBehaviour {
     [SerializeField]
@@ -9,7 +10,11 @@ public class Bee : MonoBehaviour {
     private int _workerBeeNumber;
     [SerializeField]
     private int _quota;
+    //quota is how much bee this object contains
+    
+    public GameObject prefabObject;
 
+    
     public void SetQuota(int quota)
     {
         _quota = quota;

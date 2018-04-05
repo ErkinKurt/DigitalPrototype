@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PrefBee : MonoBehaviour
 {
@@ -8,6 +9,17 @@ public class PrefBee : MonoBehaviour
 
 	private Transform _initPlace;
 	public Transform _destination;
+	
+	
+	public Text beeNoText;
+	public int beeNO = 1;
+
+
+	private void Awake()
+	{
+		beeNoText = GetComponent<Text>();
+	}
+
 
 	public void Move(Transform init,Transform dest)
 	{

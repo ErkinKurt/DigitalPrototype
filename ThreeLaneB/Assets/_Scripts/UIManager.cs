@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour {
         SendBeeUI.transform.position = _transform.position;
         SendBeeUI.transform.position += Vector3.up;
     }
+    
 
     public void Highlight( GameObject obje) {
         if (gameObjects.Count == 0)
@@ -49,6 +50,8 @@ public class UIManager : MonoBehaviour {
     }
 
     public void ShowTargetUI(GameObject objec) {
+        //if (CompareTag ("resource")) showsendSoldierBeeUI else ShowSendWorkerUI
+
         ShowSendBeeUI(objec.transform);
     }
 	

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - UIManager
   - Resource
+  - BaseP1
+  - BaseP2
+  - BeeSpawnPos
+  - ControlPoint
   layers:
   - Default
   - TransparentFX

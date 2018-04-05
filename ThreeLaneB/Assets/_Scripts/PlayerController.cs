@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    private Transform _initialPosition;
-    private Transform _targetPosition;
+    private GameObject _initialPosition;
+    private GameObject _targetPosition;
 
     public TextManager _workerBtn;
     public TextManager _soldierBtn;
@@ -23,29 +23,34 @@ public class PlayerController : MonoBehaviour
 
     public GameObject beePref;
 
-    public int _sentBeeNumber = 5;
+    public int _sentBeeNumber;
     
     public void SendWorkerBee()
     {
         //Actual sending bees....
-        _initialPosition = _uiManager.gameObjects[0].transform;
-        _targetPosition = _uiManager.gameObjects[1].transform;
-        
-        Bee _targetBee = _targetPosition.GetComponent<Bee>();
-        Bee _initialBee = _initialPosition.GetComponent<Bee>();
+        _initialPosition = _uiManager.gameObjects[0];
+        _targetPosition = _uiManager.gameObjects[1];
 
-        if (_sentBeeNumber <= _initialBee.GetWorkerBeeNumber())
+        _sentBeeNumber = _initialPosition.GetComponent<Bee>().GetWorkerBeeNumber();
+        if (_sentBeeNumber > 0)
         {
-            GameObject _bee =   Instantiate(beePref);
-            _bee.GetComponent<PrefBee>().Move(_initialPosition,_targetPosition);
+            Bee _targetBee = _targetPosition.GetComponent<Bee>();
+            Bee _initialBee = _initialPosition.GetComponent<Bee>();
+            if (_initialPosition.GetComponent<Bee>().prefabObject == null)
+            {
+                Debug.Log("pref is null sent ok");
+            }
+            else
+            {
+                Destroy(_initialPosition.GetComponent<Bee>().prefabObject);
+            }
+
+            GameObject _bee = Instantiate(beePref);
+            _bee.GetComponent<PrefBee>().Move(_initialPosition.transform, _targetPosition.transform);
             _initialBee.SetWorkerBeeNumber(_initialBee.GetWorkerBeeNumber() - _sentBeeNumber);
             _targetBee.SetWorkerBeeNumber(_targetBee.GetWorkerBeeNumber() + _sentBeeNumber);
             Debug.Log("sent bees: " + _sentBeeNumber);
         }
-        else
-            Debug.Log("Worker bee sent error:" + _sentBeeNumber);
-
-
     }
 
 
@@ -53,24 +58,29 @@ public class PlayerController : MonoBehaviour
     public void SendSoldierBee()
     {
         //Actual sending bees....
-        _initialPosition = _uiManager.gameObjects[0].transform;
-        _targetPosition = _uiManager.gameObjects[1].transform;
-        
-        Bee _targetBee = _targetPosition.GetComponent<Bee>();
-        Bee _initialBee = _initialPosition.GetComponent<Bee>();
+        _initialPosition = _uiManager.gameObjects[0];
+        _targetPosition = _uiManager.gameObjects[1];
 
-        if (_sentBeeNumber <= _initialBee.GetSoldierBeeNumber())
+        _sentBeeNumber = _initialPosition.GetComponent<Bee>().GetSoldierBeeNumber();
+        if (_sentBeeNumber > 0)
         {
-            GameObject _bee =   Instantiate(beePref);
-            _bee.GetComponent<PrefBee>().Move(_initialPosition,_targetPosition);
+            Bee _targetBee = _targetPosition.GetComponent<Bee>();
+            Bee _initialBee = _initialPosition.GetComponent<Bee>();
+            if (_initialPosition.GetComponent<Bee>().prefabObject == null)
+            {
+                Debug.Log("pref is null sent ok");
+            }
+            else
+            {
+                Destroy(_initialPosition.GetComponent<Bee>().prefabObject);
+            }
+
+            GameObject _bee = Instantiate(beePref);
+            _bee.GetComponent<PrefBee>().Move(_initialPosition.transform, _targetPosition.transform);
             _initialBee.SetSoldierBeeNumber(_initialBee.GetSoldierBeeNumber() - _sentBeeNumber);
             _targetBee.SetSoldierBeeNumber(_targetBee.GetSoldierBeeNumber() + _sentBeeNumber);
             Debug.Log("sent bees: " + _sentBeeNumber);
         }
-        else
-            Debug.Log("Soldier bee sent error:" + _sentBeeNumber);
-
-
     }
 
     private void Awake()
