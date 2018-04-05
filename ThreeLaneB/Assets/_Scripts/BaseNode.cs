@@ -135,6 +135,7 @@ public class BaseNode : MonoBehaviour {
                     //_bee.prefabObject.GetComponent<PrefBee>().beeNoText.text = _bee.GetSoldierBeeNumber().ToString();
                 }
                 else
+
                 {
                     _bee.prefabObject.GetComponent<PrefBee>().beeNO = _bee.GetSoldierBeeNumber();
                     //_bee.prefabObject.GetComponent<PrefBee>().beeNoText.text = _bee.GetSoldierBeeNumber().ToString();
@@ -155,8 +156,63 @@ public class BaseNode : MonoBehaviour {
     public void CreateWorkerBee()
     {
         //asker ari fonk. bakarak doldur
-    }
+        if (baseOwner == Player.P1)
+        {
+            Debug.Log("in p1");
+            if (currentBaseResource >= _workerBeeResourceCost && playerManager.concurrentBee_P1 < _maxBeeQuota)
+            {
+                currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
+                _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
 
+                if (_bee.prefabObject == null)
+                {
+                    _bee.prefabObject = Instantiate(workerBeePrefab, spawnPositions[0].position, Quaternion.identity);
+                    _bee.prefabObject.GetComponent<PrefBee>().beeNO = _bee.GetWorkerBeeNumber();
+                    //_bee.prefabObject.GetComponent<PrefBee>().beeNoText.text = _bee.GetSoldierBeeNumber().ToString();
+                }
+                else
+                {
+                    _bee.prefabObject.GetComponent<PrefBee>().beeNO = _bee.GetWorkerBeeNumber();
+                    //_bee.prefabObject.GetComponent<PrefBee>().beeNoText.text = _bee.GetSoldierBeeNumber().ToString();
+                }
+            }
+            else
+            {
+                Debug.Log("CantCreateWorker P1-> " + "CurrRes=" + currentBaseResource + ">" + "soldierCost= " + _workerBeeResourceCost + "&&" + " " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+            }
+        }
+        else if (baseOwner == Player.P2)
+        {
+            Debug.Log("in p2");
+            if (currentBaseResource >= _workerBeeResourceCost && playerManager.concurrentBee_P2 < _maxBeeQuota)
+            {
+                currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
+                _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
+
+                if (_bee.prefabObject == null)
+                {
+                    _bee.prefabObject = Instantiate(workerBeePrefab, spawnPositions[0].position, Quaternion.identity);
+                    _bee.prefabObject.GetComponent<PrefBee>().beeNO = _bee.GetWorkerBeeNumber();
+                    //_bee.prefabObject.GetComponent<PrefBee>().beeNoText.text = _bee.GetSoldierBeeNumber().ToString();
+                }
+                else
+                {
+                    _bee.prefabObject.GetComponent<PrefBee>().beeNO = _bee.GetWorkerBeeNumber();
+                    //_bee.prefabObject.GetComponent<PrefBee>().beeNoText.text = _bee.GetSoldierBeeNumber().ToString();
+                }
+            }
+            else
+            {
+                Debug.Log("CantCreateSoldier P2-> " + "CurrRes=" + currentBaseResource + ">" + "soldierCost= " + _workerBeeResourceCost + "&&" + " " + "P1concurrBee= " + playerManager.concurrentBee_P2 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player settings may wrong. Check P1 and P2 settings or mailto: ardazeytin@outlook.com or Call 911");
+        }
+    }
 
     //standart resource gathering without using resource additional nodes
     private void AddHoneyStock()
